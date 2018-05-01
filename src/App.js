@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Product from './components/product/product.js'
 import Header from './components/Header/Header.js'
 import data from '/Users/harikrishnan/ReactProjects/my-cart/src/data/productlist.js'
@@ -23,12 +24,17 @@ class App extends Component {
 		this.sumTotalAmount = this.sumTotalAmount.bind(this);
 		this.checkProduct = this.checkProduct.bind(this);
 		this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
+		this.updateQuantity=this.updateQuantity.bind(this);
+		this.handleSearch=this
   }
   updateQuantity(qty){
 		console.log("quantity added...")
 		this.setState({
 				quantity: qty
 		})
+	}
+	handleSearch(event){
+		this.setState({term: event.target.value});
 	}
 	checkProduct(productID){
 		let cart = this.state.cart;
@@ -104,9 +110,6 @@ handleRemoveProduct(id, e){
 					cartItems={this.state.cart}
 					removeProduct={this.handleRemoveProduct}
 					handleSearch={this.handleSearch}
-					handleMobileSearch={this.handleMobileSearch}
-					handleCategory={this.handleCategory}
-					categoryTerm={this.state.category}
 					updateQuantity={this.updateQuantity}
 					productQuantity={this.state.moq}
 				/>

@@ -24,8 +24,16 @@
 }
 .stepper-input{
     display: flex;
-    display: -webkit-flex;
-    color: gray;
+    color: #A04040;
     max-width: 150px;
-    margin: 0 auto;
+    margin-left: 17%;
+    margin-bottom:3%;
+}
+.quantity{
+    height: 24px;
+    width: 48px;
+    text-align: center;
+    margin: 0 12px;
+    border-radius: 17px;
+    border: 1px solid gray;
 }

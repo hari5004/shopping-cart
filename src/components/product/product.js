@@ -42,22 +42,36 @@ class Product extends Component {
         let scope=this;
         return(
             <div className="product">
-                  <div className="product-image">
+                <div className="container">
+                    <div className="row">
+                        <div className="col product-image">
                 <img className="img"src={this.props.imageData['image']}/>
-                </div>
-                <div className="product-name">
+                 </div>
+                 </div>
+                 <div className="row">
+                     <div className="col product-name">
                    <p> {
                         this.props.imageData['name']
                     }
                     </p>
-                </div>
-                <div className="product-price">
+                     </div>
+                 </div>
+                 <div className="row">
+                     <div className="col product-price">
                     <p>Rs:{this.props.imageData['price']}</p>
-                </div>
-                <div class="tocart">
-                    <button className="tocartbutton" onClick={this.addToCart.bind(this, image, name, price, id, quantity)}>Add to cart</button>
-                    </div>
-                <Counter productQuantity={1} updateQuantity={this.props.updateQuantity} resetQuantity={this.resetQuantity}/>
+                     </div>
+                 </div>
+                   <div className="row">
+                       <div className="col">
+                       <Counter productQuantity={1} updateQuantity={this.props.updateQuantity} resetQuantity={this.resetQuantity}/>
+                            </div>
+                       </div> 
+                 <div className="row">
+                     <div className="col tocart">
+                    <button className="btn tocartbutton" onClick={this.addToCart.bind(this, image, name, price, id, quantity)}>Add to cart</button>
+                         </div>
+                 </div>
+                 </div>
                 </div>
         );
     }

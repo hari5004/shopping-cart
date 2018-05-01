@@ -21,54 +21,29 @@ class Header extends Component{
     handleSubmit(e){
         e.preventDefault();
     }
-    handleMobileSearch(e){
-        e.preventDefault();
-        this.setState({
-            mobileSearch: true
-        })
-    }
-    handleSearchNav(e){
-        e.preventDefault();
-        this.setState({
-            mobileSearch: false
-        }, function(){
-            this.refs.searchBox.value = "";
-            this.props.handleMobileSearch();
-        })
-    }
-    handleClickOutside(event) {
-        const cartNode = findDOMNode(this.refs.cartPreview);
-        const buttonNode = findDOMNode(this.refs.cartButton);
-        if(cartNode.classList.contains('active')){
-            if (!cartNode || !cartNode.contains(event.target)){
-                this.setState({
-                    showCart: false
-                })
-                event.stopPropagation();
-            }
-        } 
-    }
-    componentDidMount() {
-      document.addEventListener('click', this.handleClickOutside.bind(this), true);
-    }
-    componentWillUnmount() {
-      document.removeEventListener('click', this.handleClickOutside.bind(this), true);
-    }
     render(){
         let cartItems;
         cartItems = this.state.cart.map(product =>{
 			return(
 				<li className="cart-item" key={product.name}>
-                    <img className="product-image" src={product.image} />
-                    <div className="product-info">
-                        <p className="product-name">{product.name}</p>
-                        <p className="product-price">{product.price}</p>
+                    <div className="container">
+                    <div className="row">
+                        <div className="col">
+                        <img className="product_image" src={product.image} />
+                        </div>
+                        <div className="col">
+                        <p >{product.name}</p>
+                        <p >Rs:{product.price}</p>
                     </div>
-                    <div className="product-total">
-                        <p className="quantity">{product.quantity} {product.quantity > 1 ?"Nos." : "No." } </p>
-                        <p className="amount">{product.quantity * product.price}</p>
+                    <div className="col">
+                        <p >Quantity:{product.quantity} {product.quantity > 1 ?"Nos." : "No." } </p>
+                        <p>Total:{product.quantity * product.price}</p>
                     </div>
-                    <a className="product-remove" href="#" onClick={this.props.removeProduct.bind(this, product.id)}>×</a>
+                    <div className="col">
+                    <a  href="#" onClick={this.props.removeProduct.bind(this, product.id)}>×</a>
+                    </div>
+                    </div>
+                    </div>
                 </li>
 			)
 		});
@@ -81,15 +56,12 @@ class Header extends Component{
 		}
         return(
             <header>
-                <div className="container">
-                    <div className="brand">
+                <div className="containerHeader">
+                    <div className="logo">
                     <p>My-Cart</p>
                     </div>
-                        
                     <div className="search">
-                        <a className="mobile-search" href="#" onClick={this.handleMobileSearch.bind(this)}><img src="https://res.cloudinary.com/sivadass/image/upload/v1494756966/icons/search-green.png" alt="search"/></a>
-                        <form action="#" method="get" className={this.state.mobileSearch ? "search-form active" : "search-form"}>
-                            <a className="back-button" href="#" onClick={this.handleSearchNav.bind(this)}><img src="https://res.cloudinary.com/sivadass/image/upload/v1494756030/icons/back.png" alt="back"/></a>
+                        <form action="#" method="get" className="search-form">
                             <input type="search" ref="searchBox" placeholder="Search for mobile phones(Hint:iphone,oneplus5t...)" className="search-keyword" onChange={this.props.handleSearch}/>
                             <button className="search-button" type="submit" onClick={this.handleSubmit.bind(this)}></button>
                         </form>
@@ -113,7 +85,7 @@ class Header extends Component{
                             </table>
                         </div>
                         <a className="cart-icon" href="#" onClick={this.handleCart.bind(this)} ref="cartButton">
-                            <img className={this.props.cartBounce ? "tada" : " "} src="https://res.cloudinary.com/sivadass/image/upload/v1493548928/icons/bag.png" alt="Cart"/>
+                            <img className="cartpic" src="https://res.cloudinary.com/sivadass/image/upload/v1493548928/icons/bag.png" alt="Cart"/>
                             {this.props.totalItems ? <span className="cart-count">{this.props.totalItems}</span> : "" }
                         </a>
                         <div className={this.state.showCart ? "cart-preview active" : "cart-preview"} ref="cartPreview">
