@@ -3,6 +3,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Product from './components/product/product.js'
 import Header from './components/Header/Header.js'
+import NotFound from './data/images/notfound.jpg'
 import data from '/Users/harikrishnan/ReactProjects/my-cart/src/data/productlist.js'
 class App extends Component {
   constructor(){
@@ -13,11 +14,8 @@ class App extends Component {
 			totalItems: 0,
 			totalAmount: 0, 
 			term: '',
-			category: '',
 			cartBounce: false,
 			quantity : 1,
-			quickViewProduct: {},
-			modalActive: false
 		};
 		this.handleAddToCart = this.handleAddToCart.bind(this);
 		this.sumTotalItems = this.sumTotalItems.bind(this);
@@ -25,10 +23,9 @@ class App extends Component {
 		this.checkProduct = this.checkProduct.bind(this);
 		this.handleRemoveProduct = this.handleRemoveProduct.bind(this);
 		this.updateQuantity=this.updateQuantity.bind(this);
-		this.handleSearch=this
+		this.handleSearch=this.handleSearch.bind(this);
   }
   updateQuantity(qty){
-		console.log("quantity added...")
 		this.setState({
 				quantity: qty
 		})
@@ -64,8 +61,6 @@ class App extends Component {
 				cartBounce:false,
 				quantity: 1
 			});
-			console.log(this.state.quantity);
-			console.log(this.state.cart);
     }.bind(this),1000);  
 		this.sumTotalItems(this.state.cart);
 		this.sumTotalAmount(this.state.cart);
@@ -100,7 +95,36 @@ handleRemoveProduct(id, e){
 	e.preventDefault();
 }
   render() {
-    var scope=this;
+		var scope=this;
+		let searchTerm=this.state.term;
+		let newdata;
+		newdata= data.filter(searchingFor(searchTerm));
+		function searchingFor(term){
+			return function(x){
+				return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
+			}
+		}
+		if(newdata.length <= 0 && searchTerm){
+			return (
+				<div className="container">
+        <Header
+					cartBounce={this.state.cartBounce}
+					total={this.state.totalAmount}
+					totalItems={this.state.totalItems}
+					cartItems={this.state.cart}
+					removeProduct={this.handleRemoveProduct}
+					handleSearch={this.handleSearch}
+					updateQuantity={this.updateQuantity}
+					productQuantity={this.state.moq}
+				/>
+				<div className="no-results">
+				<img className="noimage"src={NotFound} alt="Getting Mad"/>
+				<h2 className="desc">Sorry, no products matched your search!</h2>
+				<p className="suggest">Enter a different keyword and try.</p>
+		</div>
+		</div>
+			)
+		}
     return (
       <div className="container">
         <Header
@@ -115,7 +139,7 @@ handleRemoveProduct(id, e){
 				/>
       <div className="products-wrapper">
         {
-        data.map(function(item,i){
+        newdata.map(function(item,i){
           return(
         <Product key={item['id']} id={item['id']} imageData={item} updateQuantity={scope.updateQuantity} addToCart={scope.handleAddToCart} quantity={scope.state.quantity}></Product>
           )
@@ -123,7 +147,7 @@ handleRemoveProduct(id, e){
         }
       </div>
       </div>
-    );
+		);
   }
 }
 

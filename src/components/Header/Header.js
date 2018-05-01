@@ -3,6 +3,8 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {findDOMNode} from 'react-dom';
 import './Header.css';
 import  CartScrollBar from './CartScrollBar.js'
+import shoppingCarrt from './shoppingcart.png'
+import logo from './logo.png'
 class Header extends Component{
     constructor(props){
         super(props);
@@ -31,11 +33,11 @@ class Header extends Component{
                         <div className="col">
                         <img className="product_image" src={product.image} />
                         </div>
-                        <div className="col">
+                        <div className="col price">
                         <p >{product.name}</p>
                         <p >Rs:{product.price}</p>
                     </div>
-                    <div className="col">
+                    <div className="col desc">
                         <p >Quantity:{product.quantity} {product.quantity > 1 ?"Nos." : "No." } </p>
                         <p>Total:{product.quantity * product.price}</p>
                     </div>
@@ -58,7 +60,7 @@ class Header extends Component{
             <header>
                 <div className="containerHeader">
                     <div className="logo">
-                    <p>My-Cart</p>
+                    <img className="cartlogo" src={logo} alt="Logo"/>
                     </div>
                     <div className="search">
                         <form action="#" method="get" className="search-form">
@@ -85,16 +87,13 @@ class Header extends Component{
                             </table>
                         </div>
                         <a className="cart-icon" href="#" onClick={this.handleCart.bind(this)} ref="cartButton">
-                            <img className="cartpic" src="https://res.cloudinary.com/sivadass/image/upload/v1493548928/icons/bag.png" alt="Cart"/>
+                            <img className="cartpic" src={shoppingCarrt} alt="Cart"/>
                             {this.props.totalItems ? <span className="cart-count">{this.props.totalItems}</span> : "" }
                         </a>
                         <div className={this.state.showCart ? "cart-preview active" : "cart-preview"} ref="cartPreview">
                             <CartScrollBar>
                                 {view}
                             </CartScrollBar>
-                            <div className="action-block">
-                                <button type="button" className={this.state.cart.length > 0 ? " " : "disabled"}>PROCEED TO CHECKOUT</button>
-                            </div>
                         </div>
                     </div>
                 </div>

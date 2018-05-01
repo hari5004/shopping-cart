@@ -106,8 +106,16 @@ td{
     }
     .cartpic{
         min-height: 20px;
-        max-height: 20px;
+        max-height: 25px;
     }
 .product_image{
         max-height: 30px;
+    }
+    .cartlogo{
+        max-height: 40px;
+    }
+.price{
+        color: grey;
+        padding: 0 16px;
+        text-align: center;
     }

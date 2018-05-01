@@ -1,7 +1,12 @@
-import iphone from '../data/images/iphonex.jpeg';
+import iphone from '../data/images/iphone.jpg';
 import honor from '../data/images/honor.jpeg';
 import oneplus from '../data/images/oneplus.jpg';
 import oneplus5 from '../data/images/oneplus5t.jpeg'
+import nokia from '../data/images/nokia3310.jpg';
+import iphone7 from '../data/images/iphone7.jpeg';
+import redminote from '../data/images/redminote.jpeg';
+import samsungs8 from '../data/images/samsungs8.png'
+import oppof7 from '../data/images/oppof7.jpg'
 const data = [
     {
       id: 1,
@@ -26,45 +31,45 @@ const data = [
     },
     {
       id: 4,
-      name: 'One Plus 5T',
-      price: 15000,
+      name: 'Nokia 3310',
+      price: 3000,
       currency: 'INR',
-      image: oneplus,
+      image: nokia,
     },
     {
       id: 5,
-      name: 'One Plus 5T',
-      price: 15000,
+      name: 'Iphone 7',
+      price: 45000,
       currency: 'INR',
-      image: oneplus5,
+      image: iphone7,
     },
     {
       id: 6,
-      name: 'One Plus 5T',
-      price: 15000,
+      name: 'Redmi Note',
+      price: 10000,
+      currency: 'INR',
+      image: redminote,
+    },
+    {
+      id: 7,
+      name: 'One Plus',
+      price: 30000,
       currency: 'INR',
       image: oneplus,
     },
     {
-      id: 6,
-      name: 'One Plus 5T',
-      price: 15000,
+      id: 8,
+      name: 'Samsung S8',
+      price: 40000,
       currency: 'INR',
-      image: oneplus,
+      image: samsungs8,
     },
     {
-      id: 6,
-      name: 'One Plus 5T',
-      price: 15000,
+      id: 9,
+      name: 'Oppo F7',
+      price: 23000,
       currency: 'INR',
-      image: oneplus,
-    },
-    {
-      id: 6,
-      name: 'One Plus 5T',
-      price: 15000,
-      currency: 'INR',
-      image: oneplus,
+      image: oppof7,
     },
   ];
   export default data;
