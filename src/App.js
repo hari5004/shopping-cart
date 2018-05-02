@@ -44,7 +44,7 @@ class App extends Component {
 		let productID = selectedProducts.id;
 		let productQty = selectedProducts.quantity;
 		if(this.checkProduct(productID)){
-			let index = cartItem.findIndex((x => x.id == productID));
+			let index = cartItem.findIndex((x => x.id === productID));
 			cartItem[index].quantity = Number(cartItem[index].quantity) + Number(productQty);
 			this.setState({
 				cart: cartItem
@@ -85,7 +85,7 @@ this.setState({
 }
 handleRemoveProduct(id, e){
 	let cart = this.state.cart;
-	let index = cart.findIndex((x => x.id == id));
+	let index = cart.findIndex((x => x.id === id));
 	cart.splice(index, 1);
 	this.setState({
 		cart: cart

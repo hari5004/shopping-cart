@@ -39,13 +39,12 @@ class Product extends Component {
         let price =this.props.imageData['price'];
         let id=this.props.id;
         let quantity=this.props.quantity;
-        let scope=this;
         return(
             <div className="product">
                 <div className="container">
                     <div className="row">
                         <div className="col product-image">
-                <img className="img"src={this.props.imageData['image']}/>
+                <img className="img"src={this.props.imageData['image']} alt="productimage"/>
                  </div>
                  </div>
                  <div className="row">

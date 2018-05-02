@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import {findDOMNode} from 'react-dom';
 import './Header.css';
 import  CartScrollBar from './CartScrollBar.js'
 import shoppingCarrt from './shoppingcart.png'
 import logo from './logo.png'
+import emptycart from './emptycart.gif'
 class Header extends Component{
     constructor(props){
         super(props);
@@ -28,10 +28,10 @@ class Header extends Component{
         cartItems = this.state.cart.map(product =>{
 			return(
 				<li className="cart-item" key={product.name}>
-                    <div className="container">
+                    <div className="container cardEffect">
                     <div className="row">
                         <div className="col">
-                        <img className="product_image" src={product.image} />
+                        <img className="product_image" src={product.image} alt="productimage" />
                         </div>
                         <div className="col price">
                         <p >{product.name}</p>
@@ -42,7 +42,7 @@ class Header extends Component{
                         <p>Total:{product.quantity * product.price}</p>
                     </div>
                     <div className="col">
-                    <a  href="#" onClick={this.props.removeProduct.bind(this, product.id)}>×</a>
+                    <a  onClick={this.props.removeProduct.bind(this, product.id)}>×</a>
                     </div>
                     </div>
                     </div>
@@ -51,8 +51,9 @@ class Header extends Component{
 		});
         let view;
         if(cartItems.length <= 0){
-            //view = <EmptyCart />
-            view =<div>Empty</div>
+            view =<div className="empty-cart">
+            <img className="empty-cartimage"src={emptycart} alt="empty-cart"/>
+        </div>
 		} else{
 			view = <CSSTransitionGroup transitionName="fadeIn" transitionEnterTimeout={500} transitionLeaveTimeout={300} component="ul" className="cart-items">{cartItems}</CSSTransitionGroup>
 		}
@@ -86,7 +87,7 @@ class Header extends Component{
                                 </tbody>
                             </table>
                         </div>
-                        <a className="cart-icon" href="#" onClick={this.handleCart.bind(this)} ref="cartButton">
+                        <a className="cart-icon" onClick={this.handleCart.bind(this)} ref="cartButton">
                             <img className="cartpic" src={shoppingCarrt} alt="Cart"/>
                             {this.props.totalItems ? <span className="cart-count">{this.props.totalItems}</span> : "" }
                         </a>

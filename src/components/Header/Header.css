@@ -119,3 +119,14 @@ td{
         padding: 0 16px;
         text-align: center;
     }
+    .empty-cart{
+        text-align: center;
+    }
+    .empty-cartimage{
+                width: 100%;
+                max-width: 250px;
+                margin: 42px auto 16px auto;
+    }
+    .cardEffect{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
