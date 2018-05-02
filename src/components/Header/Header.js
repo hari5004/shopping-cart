@@ -5,6 +5,7 @@ import  CartScrollBar from './CartScrollBar.js'
 import shoppingCarrt from './shoppingcart.png'
 import logo from './logo.png'
 import emptycart from './emptycart.gif'
+import {findDOMNode} from 'react-dom';
 class Header extends Component{
     constructor(props){
         super(props);
@@ -23,6 +24,24 @@ class Header extends Component{
     handleSubmit(e){
         e.preventDefault();
     }
+    handleClickOutside(event) {
+        const cartNode = findDOMNode(this.refs.cartPreview);
+        if(cartNode.classList.contains('active')){
+            if (!cartNode || !cartNode.contains(event.target)){
+                this.setState({
+                    showCart: false
+                })
+                event.stopPropagation();
+            }
+        } 
+    }
+    componentDidMount() {
+      document.addEventListener('click', this.handleClickOutside.bind(this), true);
+    }
+    componentWillUnmount() {
+      document.removeEventListener('click', this.handleClickOutside.bind(this), true);
+    }
+
     render(){
         let cartItems;
         cartItems = this.state.cart.map(product =>{
