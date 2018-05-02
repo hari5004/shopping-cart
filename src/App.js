@@ -4,7 +4,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Product from './components/product/product.js'
 import Header from './components/Header/Header.js'
 import NotFound from './data/images/notfound.jpg'
-import data from '/Users/harikrishnan/ReactProjects/my-cart/src/data/productlist.js'
+import data from './data/productlist.js'
 class App extends Component {
   constructor(){
 		super();
@@ -14,7 +14,6 @@ class App extends Component {
 			totalItems: 0,
 			totalAmount: 0, 
 			term: '',
-			cartBounce: false,
 			quantity : 1,
 		};
 		this.handleAddToCart = this.handleAddToCart.bind(this);
@@ -53,12 +52,10 @@ class App extends Component {
 			cartItem.push(selectedProducts);
 		}
 		this.setState({
-			cart : cartItem,
-			cartBounce: true,
+			cart : cartItem
 		});
 		setTimeout(function(){
 			this.setState({
-				cartBounce:false,
 				quantity: 1
 			});
     }.bind(this),1000);  
@@ -108,7 +105,6 @@ handleRemoveProduct(id, e){
 			return (
 				<div className="container">
         <Header
-					cartBounce={this.state.cartBounce}
 					total={this.state.totalAmount}
 					totalItems={this.state.totalItems}
 					cartItems={this.state.cart}
@@ -128,7 +124,6 @@ handleRemoveProduct(id, e){
     return (
       <div className="container">
         <Header
-					cartBounce={this.state.cartBounce}
 					total={this.state.totalAmount}
 					totalItems={this.state.totalItems}
 					cartItems={this.state.cart}
