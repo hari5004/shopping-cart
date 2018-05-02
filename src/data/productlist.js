@@ -11,7 +11,7 @@ const data = [
     {
       id: 1,
       name: 'IPhone X',
-      price: 800000,
+      price: 80000,
       currency: 'INR',
       image:iphone,
     },
